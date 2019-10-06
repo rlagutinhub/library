@@ -170,13 +170,13 @@ class ConfigParserClass(object):
 
     def __get_sections(self):
 
-        sections_items = self.config.sections()
+        sections = self.config.sections()
 
-        if not sections_items:
+        if not sections:
             return None
 
         else:
-            return sections_items
+            return sections
 
     def __get_keys(self):
 
