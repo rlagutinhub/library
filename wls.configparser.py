@@ -95,7 +95,7 @@ class ConfigParserClass(object):
         self.config = configparser.ConfigParser()
 
         try:
-            open(self.file_value, 'rb').read(1)
+            # open(self.file_value, 'rb').read(1)
             self.config.read(self.file_value)
 
         except:
