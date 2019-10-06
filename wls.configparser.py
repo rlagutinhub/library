@@ -79,7 +79,7 @@ import json
 import configparser
 
 
-settings_file = 'settings.properties'
+file = 'settings.properties'
 section = 'Deployments'
 keys='keys'
 
@@ -227,7 +227,7 @@ class ConfigParserClass(object):
 
 def main():
 
-    pars = ConfigParserClass(file_value=settings_file, keys_value=keys, section_value=section)
+    pars = ConfigParserClass(file_value=file, keys_value=keys, section_value=section)
     print("Params: ", pars.params)
     print("Sections: ", pars.sections)
     print("Keys: ", pars.keys)
