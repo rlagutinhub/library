@@ -199,7 +199,7 @@ class ConfigParserClass(object):
 
     def __get_settings(self):
 
-        if not self.section_value or not self.keys_value or not self.keys or not self.params:
+        if not self.section_value or not self.keys_value or not self.keys or not self.sections or not self.params:
             return None
 
         settings = dict()
