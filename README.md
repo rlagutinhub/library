@@ -2,6 +2,10 @@
 ```
 ```
 
+#### Bash
+
+> * [get.ini.sh](https://github.com/rlagutinhub/library/blob/master/get.ini.sh)
+
 #### Python
 
 > * [urllib.request.py](https://github.com/rlagutinhub/library/blob/master/urllib.request.py)
