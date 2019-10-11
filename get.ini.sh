@@ -46,18 +46,26 @@ function get_ini() {
 
     while read SECTION; do
 
-        if [ "$(echo "$SECTION" | sed 's/ *$//g')" == '['$SECTION_F']' ]; then
+        SECTION=$(echo "$SECTION" | sed 's/ *$//g')
 
-            SAVEIFS=$IFS; IFS='='
+        if [ "$SECTION" == '['$SECTION_F']' ]; then    
 
-            while read KEY VALUE; do
+                SAVEIFS=$IFS; IFS='='
 
-                if [ "$(echo "$KEY" | sed 's/ *$//g')" == "$KEY_F" ]; then
+                while read KEY VALUE; do
 
-                    echo $VALUE | sed 's/ *$//g'
-                    break
+                    KEY=$(echo "$KEY" | sed 's/ *$//g')
 
-                fi
+                    if [ "${KEY:0:1}" == "[" ]; then break; fi
+
+                    if [ "$KEY" == "$KEY_F" ]; then
+
+                        VALUE=$(echo $VALUE | sed 's/ *$//g')
+
+                        echo $VALUE
+                        break
+
+                    fi
 
             done
 
