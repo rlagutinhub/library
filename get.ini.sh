@@ -48,28 +48,19 @@ function get_ini() {
 
         SECTION=$(echo "$SECTION" | sed 's/ *$//g')
 
-        if [ "$SECTION" == '['$SECTION_F']' ]; then    
+        if [ "$SECTION" == '['$SECTION_F']' ]; then
 
-            SAVEIFS=$IFS; IFS='='
+            while read PROPERTIES; do
 
-            while read KEY VALUE; do
+                if [[ $PROPERTIES =~ ^\[.*\]$ ]]; then break; fi
+                if [[ ! $(echo $PROPERTIES | grep "=") ]]; then continue; fi
 
-                KEY=$(echo "$KEY" | sed 's/ *$//g')
+                KEY=$(echo "$(echo $PROPERTIES | cut -d "=" -f 1)" | sed 's/ *$//g')
+                VALUE=$(echo "$(echo $PROPERTIES | cut -d "=" -f 2-)" | sed 's/ *$//g')
 
-                if [ "${KEY:0:1}" == "[" ]; then break; fi
+                if [ "$KEY" == "$KEY_F" ]; then echo $VALUE; break; fi
 
-                if [ "$KEY" == "$KEY_F" ]; then
-
-                    VALUE=$(echo $VALUE | sed 's/ *$//g')
-
-                    echo $VALUE
-                    break
-
-                fi
-
-            done
-
-            IFS=$SAVEIFS
+           done
 
         fi
 
